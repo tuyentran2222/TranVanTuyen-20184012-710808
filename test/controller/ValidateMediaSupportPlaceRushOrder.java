@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+/**
+ * test media is supported place rush order.
+ * @author TuyenTV_20184012
+ *
+ */
 class ValidateMediaSupportPlaceRushOrder {
 
 	private PlaceRushOrderController pController;
@@ -23,7 +28,11 @@ class ValidateMediaSupportPlaceRushOrder {
             "45,false"
     })
 
-	
+	/**
+	 * 
+	 * @param id media id
+	 * @param expected
+	 */
 	void test(int id, boolean expected) {
 		boolean isSupport = pController.checkMediaSupportRushOrder(id);
         System.out.println(id);

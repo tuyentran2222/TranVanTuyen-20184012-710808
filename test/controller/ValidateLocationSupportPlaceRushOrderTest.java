@@ -9,6 +9,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+/**
+ * test location is supported place rush order.
+ * @author TuyenTV_20184012
+ *
+ */
 class ValidateLocationSupportPlaceRushOrderTest {
 
 	private PlaceRushOrderController pController;

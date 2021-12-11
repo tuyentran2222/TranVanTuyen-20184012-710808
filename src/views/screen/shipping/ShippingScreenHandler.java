@@ -53,6 +53,7 @@ public class ShippingScreenHandler extends BaseScreenHandler implements Initiali
 	@FXML
 	private CheckBox checkboxPlaceRushOrder;
 
+	
 	private Order order;
 
 	 /**
@@ -87,7 +88,7 @@ public class ShippingScreenHandler extends BaseScreenHandler implements Initiali
 		messages.put("address", address.getText());
 		messages.put("instructions", instructions.getText());
 		messages.put("province", province.getValue());
-		LOGGER.info("1230");
+		
 		try {
 			// process and validate delivery info
 			getBController().processDeliveryInfo(messages);
@@ -95,26 +96,31 @@ public class ShippingScreenHandler extends BaseScreenHandler implements Initiali
 			throw new InvalidDeliveryInfoException(e.getMessage());
 		}
 		
-		LOGGER.info("a1230");
+		
 		Boolean checkLocationSupportRushOrder = true;
 		
+		//variable check all media not support place rush order
 		Boolean checkAllMediaNotSRO = false;
 		
+		//process when user click place rush order
 		if (checkboxPlaceRushOrder.isSelected()) {
 			String location = province.getValue();
-			LOGGER.info(location);
+			LOGGER.info("Choose Place Rush Order ");
+			LOGGER.info("Province: " + location);
+			
 			PlaceRushOrderController placeRushOrderController = new PlaceRushOrderController();
+			
+			//get list order media
 			List<OrderMedia> lists = this.order.getlstOrderMedia();
 			checkLocationSupportRushOrder = placeRushOrderController.checkLocationSupportRushOrder(location);
+			
 			//dem so san pham khong ho tro giao hang nhanh
 			int count = 0;
 			
 			if (checkLocationSupportRushOrder) {
-				for (OrderMedia m:lists) {
+				for (OrderMedia m : lists) {
 					int mediaId = m.getMedia().getId();
-					LOGGER.info(mediaId + " ");
-					if (!placeRushOrderController.checkSupportRushOrder(location, mediaId))
-					count++;
+					if (!placeRushOrderController.checkSupportRushOrder(location, mediaId)) count++;
 				}
 				
 				// kiem tra so san pham khong ho tro giao hang 

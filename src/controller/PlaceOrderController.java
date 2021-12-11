@@ -134,6 +134,7 @@ public class PlaceOrderController extends BaseController{
      * validate address of receive product
      * @param address address of customer
      * @return 
+     * @author TuyenTV_20184012
      */
     public boolean validateAddress(String address) {
     	//check emty name
@@ -141,7 +142,7 @@ public class PlaceOrderController extends BaseController{
     	
     	//check name only have letter or space or ,
     	for (char c : address.toCharArray()) {
-    		if (c ==' ' || Character.isLetter(c) || c == ',') {
+    		if (c == ' ' || Character.isLetter(c) || c == ',') {
     			continue;
     		}
     		else return false;

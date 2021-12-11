@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+/**
+ * test address input
+ * @author TuyenTV_20184012
+ *
+ */
 class ValidateAddressTest {
 
 	private PlaceOrderController placeOrderController;
