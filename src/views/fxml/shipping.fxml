@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="screenTitle" layoutX="60.0" layoutY="-9.0" prefHeight="96.0" prefWidth="208.0" text="SHIPPING" textAlignment="CENTER" textFill="#5091e6">
          <font>
@@ -33,10 +34,11 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="108.60001220703126" minHeight="10.0" prefHeight="63.999996948242185" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="168.5999969482422" minHeight="10.0" prefHeight="64.40000610351564" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="313.59999389648436" minHeight="10.0" prefHeight="67.19997558593752" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="292.80002441406253" minHeight="10.0" prefHeight="119.1999450683594" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="311.8000549316406" minHeight="10.0" prefHeight="215.8000549316406" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="168.5999969482422" minHeight="10.0" prefHeight="73.8" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="313.59999389648436" minHeight="10.0" prefHeight="70.59999999999998" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="292.80002441406253" minHeight="10.0" prefHeight="127.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="311.8000549316406" minHeight="10.0" prefHeight="144.60000000000002" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="311.8000549316406" minHeight="10.0" prefHeight="63.1999572753906" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
@@ -104,7 +106,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                <children>
                   <Label layoutX="24.0" layoutY="77.0" text="Shipping&#10;Instructions">
                      <font>
@@ -132,6 +134,11 @@
                   </Label>
                </children>
             </Pane>
+            <CheckBox fx:id="checkboxPlaceRushOrder" mnemonicParsing="false" text="Place Rush Order" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
          </children>
       </GridPane>
       <Button fx:id="btnConfirmDelivery" alignment="CENTER" contentDisplay="CENTER" layoutX="526.0" layoutY="645.0" mnemonicParsing="false" onMouseClicked="#submitDeliveryInfo" prefHeight="46.0" prefWidth="316.0" style="-fx-background-color: #5091e6; -fx-cursor: hand;" text="Confirm delivery" textFill="WHITE">
