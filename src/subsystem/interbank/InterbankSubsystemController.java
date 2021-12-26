@@ -1,6 +1,7 @@
 package subsystem.interbank;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 import common.exception.InternalServerErrorException;
 import common.exception.InvalidCardException;
@@ -15,6 +16,7 @@ import entity.payment.PaymentTransaction;
 import utils.Configs;
 import utils.MyMap;
 import utils.Utils;
+import views.screen.invoice.InvoiceScreenHandler;
 
 public class InterbankSubsystemController {
 
@@ -23,6 +25,7 @@ public class InterbankSubsystemController {
 	private static final String PAY_COMMAND = "pay";
 	private static final String VERSION = "1.0.0";
 
+	private static Logger LOGGER = Utils.getLogger(InterbankSubsystemController.class.getName());
 	private static InterbankBoundary interbankBoundary = new InterbankBoundary();
 
 	public PaymentTransaction refund(CreditCard card, int amount, String contents) {
@@ -46,12 +49,13 @@ public class InterbankSubsystemController {
 		transaction.put("transactionContent", contents);
 		transaction.put("amount", amount);
 		transaction.put("createdAt", Utils.getToday());
-
+		
 		Map<String, Object> requestMap = new MyMap();
 		requestMap.put("version", VERSION);
 		requestMap.put("transaction", transaction);
-
+		LOGGER.info("IntebankSubSystemControl:" +  generateData(requestMap));
 		String responseText = interbankBoundary.query(Configs.PROCESS_TRANSACTION_URL, generateData(requestMap));
+		LOGGER.info("IntebankSubSystemControl:" + responseText);
 		MyMap response = null;
 		try {
 			response = MyMap.toMyMap(responseText, 0);

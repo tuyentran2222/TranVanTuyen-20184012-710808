@@ -67,10 +67,10 @@ public class API {
 	 * @author TuyenTV_20184012
 	 */
 	public static String post(String url, String data, String token) throws IOException {
-		allowMethods("PATCH");
-		
+//		allowMethods("PATCH");
+		LOGGER.info("Start post");
 		//part 1: setup
-		HttpURLConnection conn = (HttpURLConnection) API.getConnection(url, token, "POST");
+		HttpURLConnection conn = (HttpURLConnection) API.getConnection(url, token, "PATCH");
 		String payload = data;
 		LOGGER.info("Request Info:\nRequest URL: " + url + "\n" + "Payload Data: " + payload + "\n");
 		
@@ -78,9 +78,10 @@ public class API {
 		Writer writer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 		writer.write(payload);
 		writer.close();
-		
+		LOGGER.info("SAI");
 		//part 3: read data return from server
 		String response = readResponse(conn);
+		LOGGER.info(response);
 		return response;
 	}
 
@@ -120,9 +121,11 @@ public class API {
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String inputLine;
 		StringBuilder respone = new StringBuilder(); // ising StringBuilder for the sake of memory and performance
-		while ((inputLine = in.readLine()) != null)
+		while ((inputLine = in.readLine()) != null) {
 			System.out.println(inputLine);
-		respone.append(inputLine + "\n");
+			respone.append(inputLine + "\n");
+		}
+			
 		in.close();
 		LOGGER.info("Respone Info: " + respone.substring(0, respone.length() - 1).toString());
 		return respone.substring(0, respone.length() - 1).toString();
@@ -139,6 +142,7 @@ public class API {
 	 */
 	
 	public static HttpURLConnection getConnection(String url, String token, String method) throws IOException {
+		LOGGER.info("Request URL: " + url);
 		URL line_api_url = new URL(url);
 		HttpURLConnection conn = (HttpURLConnection) line_api_url.openConnection();
 		conn.setDoInput(true);

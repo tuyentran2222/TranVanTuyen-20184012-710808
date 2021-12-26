@@ -27,6 +27,9 @@ public class Media {
     protected int quantity;
     protected String type;
     protected String imageURL;
+    protected int height;
+    protected int width;
+    protected int length;
 
     public Media() throws SQLException{
         stm = AIMSDB.getConnection().createStatement();

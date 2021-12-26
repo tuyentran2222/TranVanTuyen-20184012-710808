@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/application/Config.java=UTF-8
+encoding//src/controller/PlaceOrderController.java=UTF-8
+encoding//src/controller/ShippingFeeNoWeightCalculator.java=UTF-8
+encoding//src/controller/ShippingFeeWithWeightCaculator.java=UTF-8
 encoding//src/utils/Configs.java=UTF-8
 encoding//test/controller/CheckSupportPlaceRushOrder.java=UTF-8
 encoding//test/controller/ValidateLocationSupportPlaceRushOrderTest.java=UTF-8

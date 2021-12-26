@@ -25,6 +25,16 @@ public class PlaceOrderController extends BaseController{
      * Just for logging purpose
      */
     private static Logger LOGGER = utils.Utils.getLogger(PlaceOrderController.class.getName());
+    
+    private ShippingFeeCalculator shippingFeeCalculator;
+    
+    public PlaceOrderController() {
+    	
+    }
+    
+    public PlaceOrderController(ShippingFeeCalculator shippingFeeCalculator) {
+    	this.shippingFeeCalculator = shippingFeeCalculator;
+    }
 
     /**
      * This method checks the avalibility of product when user click PlaceOrder button
@@ -81,7 +91,6 @@ public class PlaceOrderController extends BaseController{
      */
     public boolean validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException{
     	String address = info.get("address");
-    	
     	String name = info.get("name");
     	String phone = info.get("phone");
     	boolean check = validateAddress(address) && validateName(name) && validatePhoneNumber(phone);
@@ -157,8 +166,13 @@ public class PlaceOrderController extends BaseController{
      * @return shippingFee
      */
     public int calculateShippingFee(Order order){
-        Random rand = new Random();
-        int fees = (int)( ( (rand.nextFloat()*10)/100 ) * order.getAmount() );
+    	//giả sử các kích thước (vì chưa biết lấy từ đâu)
+    	int height = 10;
+    	int width = 20;
+    	int length = 50;
+    	
+    	// tính giá trị phí vận chuyển phụ thuộc vào shippingFeeCalculator
+    	int fees =  shippingFeeCalculator.calculateShippingFee(order,height, length, width);
         LOGGER.info("Order Amount: " + order.getAmount() + " -- Shipping Fees: " + fees);
         return fees;
     }
